@@ -1,0 +1,83 @@
+#include <dht.h>
+#include <LiquidCrystal.h>
+
+LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
+
+dht DHT;
+#define DHT11_PIN 7
+#define pwm 9
+byte degree[8] = 
+              {
+                0b00011,
+                0b00011,
+                0b00000,
+                0b00000,
+                0b00000,
+                0b00000,
+                0b00000,
+                0b00000
+              };
+
+
+void setup(){
+  lcd.begin(16, 2);
+  analogWrite(pwm, 255);
+  delay(3000);
+}
+
+void loop()
+{
+  int chk = DHT.read11(DHT11_PIN);
+  int  temp=DHT.temperature;
+  lcd.setCursor(1,1); 
+  lcd.print("T: ");
+  lcd.print(int(DHT.temperature));
+  lcd.print((char)223);
+  lcd.print("C");
+  lcd.setCursor(9,1);
+  lcd.print("H: ");
+  lcd.print(int(DHT.humidity));
+  lcd.print("%");
+  lcd.setCursor(3,0);
+    if(temp <17 )
+    { 
+      analogWrite(9,0);
+      lcd.print("Fan is OFF");
+      delay(100);
+    }
+    
+    else if(temp>=17 && temp<=24)
+    {
+      analogWrite(pwm, 164);
+      lcd.print("Speed: 25%");
+      delay(100);
+    }
+    
+     else if(temp>24 && temp<=26)
+    {
+      analogWrite(pwm, 184);
+      lcd.print("Speed: 50%");
+      delay(100);
+    }
+    
+     else if(temp>26)
+    {
+      analogWrite(pwm, 204);
+      lcd.print("Speed: 75%");
+      delay(100);
+    }
+    
+    else if(temp==29)
+    {
+      analogWrite(pwm, 234);
+      lcd.print("Speed: 80%");
+      delay(100);
+    }
+     else if(temp>29)
+    {
+      analogWrite(pwm, 255);
+      lcd.print("Speed: 100%");
+      delay(100);
+    } 
+  delay(1000);
+}

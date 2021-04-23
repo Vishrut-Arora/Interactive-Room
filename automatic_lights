@@ -1,0 +1,77 @@
+
+int const trigPin = 13;
+int const echoPin = 12;
+int const led = 5;
+int const trigPin2 = 11;
+int const echoPin2 = 10;
+int const led2 = 4;
+int const trigPin3 = 9;
+int const echoPin3 = 8;
+int const led3 = 3;
+int const trigPin4 = 7;
+int const echoPin4 = 6;
+int const led4 = 2;
+
+void setup()
+{
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+  pinMode(led, OUTPUT);
+    pinMode(trigPin2, OUTPUT);
+  pinMode(echoPin2, INPUT);
+  pinMode(led2, OUTPUT);
+    pinMode(trigPin3, OUTPUT);
+  pinMode(echoPin3, INPUT);
+  pinMode(led3, OUTPUT);
+    pinMode(trigPin4, OUTPUT);
+  pinMode(echoPin4, INPUT);
+  pinMode(led4, OUTPUT);
+}
+
+void loop()
+{
+  int duration, distance;
+  digitalWrite(trigPin, HIGH); 
+  delay(10);
+  digitalWrite(trigPin, LOW);
+  duration = pulseIn(echoPin, HIGH);
+  distance = (duration/2) / 29.1;
+    if (distance <= 50 && distance >= 0) {
+      digitalWrite(led, HIGH);
+    } else {
+      digitalWrite(led, LOW);
+    }
+  int duration2, distance2;
+  digitalWrite(trigPin2, HIGH); 
+  delay(10);
+  digitalWrite(trigPin2, LOW);
+  duration2 = pulseIn(echoPin2, HIGH);
+  distance2 = (duration2/2) / 29.1;
+    if (distance2 <= 50 && distance2 >= 0) {
+      digitalWrite(led2, HIGH);
+    } else {
+      digitalWrite(led2, LOW);
+    }
+  int duration3, distance3;
+  digitalWrite(trigPin3, HIGH); 
+  delay(10);
+  digitalWrite(trigPin3, LOW);
+  duration3 = pulseIn(echoPin3, HIGH);
+  distance3 = (duration3/2) / 29.1;
+    if (distance3 <= 50 && distance3 >= 0) {
+      digitalWrite(led3, HIGH);
+    } else {
+      digitalWrite(led3, LOW);
+    }
+  int duration4, distance4;
+  digitalWrite(trigPin4, HIGH); 
+  delay(10);
+  digitalWrite(trigPin4, LOW);
+  duration4 = pulseIn(echoPin4, HIGH);
+  distance4 = (duration4/2) / 29.1;
+    if (distance4 <= 50 && distance4 >= 0) {
+      digitalWrite(led4, HIGH);
+    } else {
+      digitalWrite(led4, LOW);
+    }
+}
